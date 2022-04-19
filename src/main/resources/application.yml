@@ -10,15 +10,15 @@ spring:
     database: ${REDIS_DB_INDEX:0}
     lettuce:
       pool:
-        # �������ӳ�
+        # 启用连接池
         enabled: true
-        #����������ݿ�������,�� 0 Ϊû������
+        #最大连接数据库连接数,设 0 为没有限制
         max-active: 16
-        #���ȴ������е�����,�� 0 Ϊû������
+        #最大等待连接中的数量,设 0 为没有限制
         max-idle: 8
-        #��������ӵȴ�ʱ�䡣���������ʱ�佫�ӵ��쳣����Ϊ-1��ʾ�����ơ�
+        #最大建立连接等待时间。如果超过此时间将接到异常。设为-1表示无限制。
         max-wait: -1ms
-        #��С�ȴ������е�����,�� 0 Ϊû������
+        #最小等待连接中的数量,设 0 为没有限制
         min-idle: 0
       shutdown-timeout: 100ms
   datasource:
@@ -27,17 +27,17 @@ spring:
     password: ${DB_PASSWORD:root}
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
-      # ��С�������ӣ�Ĭ��ֵ10��С��0�����maximum-pool-size����������Ϊmaximum-pool-size
+      # 最小空闲连接，默认值10，小于0或大于maximum-pool-size，都会重置为maximum-pool-size
       minimum-idle: 8
-      # �����������С�ڵ���0�ᱻ����ΪĬ��ֵ10��������С��1�ᱻ����Ϊminimum-idle��ֵ
+      # 最大连接数，小于等于0会被重置为默认值10；大于零小于1会被重置为minimum-idle的值
       maximum-pool-size: 16
-      # �������ӳ�ʱʱ�䣬Ĭ��ֵ600000��10���ӣ������ڵ���max-lifetime��max-lifetime>0���ᱻ����Ϊ0��������0��С��10�룬�ᱻ����Ϊ10�롣
+      # 空闲连接超时时间，默认值600000（10分钟），大于等于max-lifetime且max-lifetime>0，会被重置为0；不等于0且小于10秒，会被重置为10秒。
       idle-timeout: 14400
-      # ���������ʱ�䣬������0��С��30�룬�ᱻ����ΪĬ��ֵ30����.����Ӧ�ñ�mysql���õĳ�ʱʱ���
+      # 连接最大存活时间，不等于0且小于30秒，会被重置为默认值30分钟.设置应该比mysql设置的超时时间短
       max-lifetime: 20000
-      # ���ڲ��������Ƿ���õĲ�ѯ���
+      # 用于测试连接是否可用的查询语句
       connection-test-query: SELECT 1
-      # ���ӳ�ʱʱ�䣺���룬С��250���룬��������ΪĬ��ֵ30��
+      # 连接超时时间：毫秒，小于250毫秒，否则被重置为默认值30秒
       connection-timeout: 30000
 
 mybatis-plus:
