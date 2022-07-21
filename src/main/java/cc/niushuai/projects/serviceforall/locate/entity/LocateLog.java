@@ -59,7 +59,7 @@ public class LocateLog extends BaseEntity {
     private String indoor;
     @TableField(value = "locate_describe")
     private String locateDescribe;
-    @TableField(value = "poiRegion")
+    @TableField(value = "poi_region")
     private String poiRegion;
     @TableField(value = "poi_region_direction_desc")
     private String poiRegionDirectionDesc;
